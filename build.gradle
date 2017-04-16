@@ -30,7 +30,7 @@ dependencies {
 
 task testJython(type: Exec, dependsOn: ['testClasses']) {
   environment = ["CLASSPATH": sourceSets.test.runtimeClasspath.asPath, "PATH": System.getenv("PATH"), "HOME": System.getenv("HOME")]
-  commandLine "nosetest", "$projectDir/src/test/jython"
+  commandLine "nosetests", "$projectDir/src/test/jython"
   workingDir = projectDir
 }
 
