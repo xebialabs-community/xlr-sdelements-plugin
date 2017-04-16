@@ -1,4 +1,4 @@
 class TestGetTask(object):
 
-    def test():
+    def test_get_task(self):
         assert False
