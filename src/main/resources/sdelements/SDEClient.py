@@ -8,24 +8,24 @@
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-from sdetools.sdelib import restclient
+import requests
 
-
-class SDEClient(restclient):
+class SDEClient:
     """
     Note: In all the API calls:
     - a 'project' arg variable is the project id
     - a 'task' arg variable is in the format <project_id>-<task_id>
         e.g. '127-T106'
     """
+    GET_TASK_URI = '%s/api/v2/projects/%s/tasks/%s/'
 
-    def __init__(self, conf_prefix, conf_name, config):
-        pass
+    def __init__(self, url, username, password):
+        self.url = url
+        self.username = username
+        self.password = password
 
-    def get_tasks(self, project, **filters):
-        """
-        Get all tasks for a project indicated by the ID of the project
-        """
-        filters['absolute_urls'] = True
-        result = self.call_api('projects/%d/tasks/' % project, args=filters)
-        return result['results']
+    def get_task(self, project_id, task_id):
+        r = requests.get(self.GET_TASK_URI % (self.url, project_id, task_id), auth=(self.username, self.password))
+        if r.status_code != 200:
+            raise Exception("Could not get task for project [%s] with task id [%s]" % (project_id, task_id))
+        return r.json()

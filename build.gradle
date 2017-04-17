@@ -1,6 +1,5 @@
 plugins {
   id "com.github.hierynomus.license" version "0.13.1"
-  id "com.github.hierynomus.jython" version "0.6.0"
   id "com.xebialabs.xl.docker" version "1.1.0"
 }
 
@@ -17,15 +16,6 @@ xlDocker {
   runImage = 'xebialabs/xlr_dev_run'
   runVersion = 'v6.2.0.1'
   runPortMapping = '15516:5516'
-}
-
-dependencies {
-  jython python(":sdetools:5.9.9") {
-    useModuleName = false
-  }
-  jython python(":listen:0.1.7") {
-    useModuleName = false
-  }
 }
 
 task testJython(type: Exec, dependsOn: ['testClasses']) {

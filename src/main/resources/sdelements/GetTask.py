@@ -10,8 +10,8 @@
 
 from sdelements.SDEClient import SDEClient
 
-client = SDEClient()
+client = SDEClient(sdServer['url'], sdServer['username'], sdServer['password'])
 filters = []
-result = client.get_tasks(project,task,filters)
+result = client.get_task(project,task)
 
 

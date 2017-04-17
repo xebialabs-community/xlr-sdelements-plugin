@@ -4,6 +4,7 @@ addons:
     packages:
     - jython
     - python-nose
+    - python-requests-mock
 before_install:
 - mkdir ~/.gradle
 - echo jythonInterpreter=jython >> ~/.gradle/gradle.properties
