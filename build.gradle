@@ -20,7 +20,7 @@ xlDocker {
 }
 
 dependencies {
-  jython python(":request-mock:1.3.0") {
+  jython python(":requests-mock:1.3.0") {
     useModuleName = false
   }
   jython python(":nose:1.3.7") {
