@@ -3,7 +3,6 @@ addons:
   apt:
     packages:
     - jython
-    - python-nose
 before_install:
 - mkdir ~/.gradle
 - echo jythonInterpreter=jython >> ~/.gradle/gradle.properties
