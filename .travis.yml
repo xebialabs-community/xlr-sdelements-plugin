@@ -1,9 +1,4 @@
-language: java
-addons:
-  apt:
-    packages:
-    - jython
-before_install:
-- mkdir ~/.gradle
-- echo jythonInterpreter=jython >> ~/.gradle/gradle.properties
-script: gradle check -PjythonInterpreter=jython
+language: python
+install:
+  - pip install nose requests-mock
+script: gradle check -PjythonInterpreter=nosetests
