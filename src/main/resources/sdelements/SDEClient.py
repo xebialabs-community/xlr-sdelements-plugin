@@ -19,13 +19,23 @@ class SDEClient:
     """
     GET_TASK_URI = '%s/api/v2/projects/%s/tasks/%s/'
 
-    def __init__(self, url, username, password):
+    def __init__(self, url, authentication_method, username, password, token):
         self.url = url
+        self.authentication_method = authentication_method
         self.username = username
         self.password = password
+        self.token = token
+
+    def _get_request(self, request_url):
+        if self.authentication_method == 'Basic':
+            return requests.get(request_url, auth=(self.username, self.password))
+        elif self.authentication_method == 'Token':
+            return requests.get(request_url, headers={'Authorization': 'token %s' % self.token})
+        else:
+            raise Exception("Authentication method not found: [%s]" % self.authentication_method)
 
     def get_task(self, project_id, task_id):
-        r = requests.get(self.GET_TASK_URI % (self.url, project_id, task_id), auth=(self.username, self.password))
+        r = self._get_request(self.GET_TASK_URI % (self.url, project_id, task_id))
         if r.status_code != 200:
             raise Exception("Could not get task for project [%s] with task id [%s]" % (project_id, task_id))
         return r.json()

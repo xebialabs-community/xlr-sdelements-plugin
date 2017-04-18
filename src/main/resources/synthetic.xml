@@ -26,6 +26,14 @@
         <property name="task" category="input" required="true" description="The id of the Task to retrieve"/>
     </type>
 
-    <type type="sdelements.Server" extends="configuration.HttpConnection" label="SD Elements: Server"/>
+    <type type="sdelements.Server" extends="configuration.HttpConnection" label="SD Elements: Server">
+        <property name="token" label="Token" password="true" required="false" description="Used when token based authentication is selected"/>
+        <property name="authenticationMethod" label="Authentication Method" kind="enum" required="true">
+            <enum-values>
+                <value>Basic</value>
+                <value>Token</value>
+            </enum-values>
+        </property>
+    </type>
 
 </synthetic>

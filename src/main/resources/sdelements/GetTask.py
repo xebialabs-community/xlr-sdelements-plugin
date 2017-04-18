@@ -10,7 +10,7 @@
 
 from sdelements.SDEClient import SDEClient
 
-client = SDEClient(sdServer['url'], sdServer['username'], sdServer['password'])
+client = SDEClient(sdServer['url'], sdServer['authenticationMethod'], sdServer['username'], sdServer['password'], sdServer['token'])
 filters = []
 result = client.get_task(project,task)
 
