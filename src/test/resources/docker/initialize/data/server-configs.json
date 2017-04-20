@@ -15,6 +15,7 @@
         "url": "https://cd.sdelements.com",
         "username": "username",
         "password": "password",
-        "authenticationMethod": "Basic"
+        "authenticationMethod": "Basic",
+        "enableSslVerification": "false"
     }
 ]

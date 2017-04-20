@@ -14,7 +14,7 @@ proxy = None
 if sdServer['proxyHost'] or sdServer['proxySshHost']:
     proxy = {'http': '%s:%s' % (sdServer['proxyHost'], sdServer['proxyPort']),
              'https': '%s:%s' % (sdServer['proxySshHost'], sdServer['proxySshPort'])}
-client = SDEClient(sdServer['url'], sdServer['authenticationMethod'], proxy, sdServer['username'], sdServer['password'], sdServer['token'])
+client = SDEClient(sdServer['url'], sdServer['authenticationMethod'], proxy, sdServer['username'], sdServer['password'], sdServer['token'], sdServer['enableSslVerification'])
 result = client.check_vulnerabilities(application, project, high, medium, low)
 
 highResult = result["highResult"]
