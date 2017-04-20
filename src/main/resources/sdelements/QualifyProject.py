@@ -11,7 +11,14 @@
 from sdelements.SDEClient import SDEClient
 
 client = SDEClient(sdServer['url'], sdServer['authenticationMethod'], sdServer['username'], sdServer['password'], sdServer['token'])
-filters = []
-result = client.get_task(project,task)
+result = client.check_vulnerabilities(application, project, high, medium, low)
+
+highResult = result["highResult"]
+mediumResult = result["mediumResult"]
+lowResult = result["lowResult"]
+if result["success"]:
+    print "Test successful"
+else:
+    raise Exception("Vulnerabilities found")
 
 

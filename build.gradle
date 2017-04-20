@@ -1,5 +1,6 @@
 plugins {
   id "com.github.hierynomus.license" version "0.13.1"
+  id "com.github.hierynomus.jython" version "0.6.0"
   id "com.xebialabs.xl.docker" version "1.1.0"
 }
 
@@ -18,6 +19,11 @@ xlDocker {
   runPortMapping = '15516:5516'
 }
 
+dependencies {
+  jython ":requests:2.13.0"
+}
+
+
 task testJython(type: Exec, dependsOn: ['testClasses']) {
   environment = ["CLASSPATH": sourceSets.test.runtimeClasspath.asPath, "PATH": System.getenv("PATH"), "HOME": System.getenv("HOME")]
   commandLine testRunner, "$projectDir/src/main/resources/", "$projectDir/src/test/jython", buildDir
@@ -28,6 +34,7 @@ test.dependsOn testJython
 license {
   header rootProject.file('License.md')
   strictCheck false
+  excludes(["**/requests/**"])
   ext.year = Calendar.getInstance().get(Calendar.YEAR)
   ext.name = 'XEBIALABS'
 }

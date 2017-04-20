@@ -21,9 +21,16 @@
         <property name="password" password="true" category="input" required="false" />
     </type>
 
-    <type type="sdelements.GetTask" extends="sdelements.Task" label="SD Elements: Get Task">
-        <property name="project" category="input" required="true" description="The id of the Project to retrieve" />
-        <property name="task" category="input" required="true" description="The id of the Task to retrieve"/>
+    <type type="sdelements.QualifyProject" extends="sdelements.Task" label="SD Elements: Qualify Project">
+        <property name="application" label="Application Name" category="input" required="true" description="The name of the Application to retrieve" />
+        <property name="project" label="Project Name" category="input" required="true" description="The name of the Project to retrieve" />
+        <property name="high" label="High vulnerabilities" category="input" kind="integer" required="true" default="0" description="Percentage of high vulnerabilities allowed" />
+        <property name="medium" label="Medium vulnerabilities" category="input" kind="integer" required="true" default="0" description="Percentage of medium vulnerabilities allowed" />
+        <property name="low" label="Low vulnerabilities" category="input" kind="integer" required="true" default="0" description="Percentage of low vulnerabilities allowed" />
+
+        <property name="highResult" label="High vulnerabilities" category="output" kind="integer" description="Percentage of high vulnerabilities allowed" />
+        <property name="mediumResult" label="Medium vulnerabilities" category="output" kind="integer" description="Percentage of medium vulnerabilities allowed" />
+        <property name="lowResult" label="Low vulnerabilities" category="output" kind="integer" description="Percentage of low vulnerabilities allowed" />
     </type>
 
     <type type="sdelements.Server" extends="configuration.HttpConnection" label="SD Elements: Server">
