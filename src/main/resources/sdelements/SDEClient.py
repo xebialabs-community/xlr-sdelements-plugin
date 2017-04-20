@@ -24,18 +24,19 @@ class SDEClient:
     PRIO_MEDIUM = (4,5,6)
     PRIO_LOW = (1,2,3)
 
-    def __init__(self, url, authentication_method, username, password, token):
+    def __init__(self, url, authentication_method, proxy, username, password, token):
         self.url = url
         self.authentication_method = authentication_method
+        self.proxy = proxy
         self.username = username
         self.password = password
         self.token = token
 
     def _get_request(self, request_url):
         if self.authentication_method == 'Basic':
-            return requests.get(request_url, auth=(self.username, self.password), verify = False)
+            return requests.get(request_url, auth=(self.username, self.password), proxies=self.proxy, verify = False)
         elif self.authentication_method == 'Token':
-            return requests.get(request_url, headers={'Authorization': 'token %s' % self.token}, verify = False)
+            return requests.get(request_url, headers={'Authorization': 'token %s' % self.token}, proxies=self.proxy, verify = False)
         else:
             raise Exception("Authentication method not found: [%s]" % self.authentication_method)
 

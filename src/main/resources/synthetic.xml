@@ -35,6 +35,8 @@
 
     <type type="sdelements.Server" extends="configuration.HttpConnection" label="SD Elements: Server">
         <property name="token" label="Token" password="true" required="false" description="Used when token based authentication is selected"/>
+        <property name="proxySshHost" label="Proxy SSH Host" required="false" description="HTTPS proxy host" />
+        <property name="proxySshPort" label="Proxy SSH Port" required="false" description="HTTPS proxy port" />
         <property name="authenticationMethod" label="Authentication Method" kind="enum" required="true">
             <enum-values>
                 <value>Basic</value>

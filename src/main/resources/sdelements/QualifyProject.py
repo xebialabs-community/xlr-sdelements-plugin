@@ -10,7 +10,11 @@
 
 from sdelements.SDEClient import SDEClient
 
-client = SDEClient(sdServer['url'], sdServer['authenticationMethod'], sdServer['username'], sdServer['password'], sdServer['token'])
+proxy = None
+if sdServer['proxyHost'] or sdServer['proxySshHost']:
+    proxy = {'http': '%s:%s' % (sdServer['proxyHost'], sdServer['proxyPort']),
+             'https': '%s:%s' % (sdServer['proxySshHost'], sdServer['proxySshPort'])}
+client = SDEClient(sdServer['url'], sdServer['authenticationMethod'], proxy, sdServer['username'], sdServer['password'], sdServer['token'])
 result = client.check_vulnerabilities(application, project, high, medium, low)
 
 highResult = result["highResult"]
