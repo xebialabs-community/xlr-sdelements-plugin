@@ -1,4 +1,8 @@
 language: python
 install:
-  - pip install nose requests requests-mock
-script: ./gradlew check -PtestRunner=nosetests
+- pip install nose requests requests-mock
+script: "./gradlew check -PtestRunner=nosetests"
+notifications:
+  hipchat:
+    rooms:
+      secure: G0+KM106bV/J6RSsrubIUliDG3b9Z6qMI8JdQu5dghPwAzP7fP3oHrw+PLOjeLkZKsztf+Yns/qqfMVMHskb9g8hEYlHS1pg1aV0BNagNXckECUDY4OdwsORU0nNdQCnPQuopKfE+xPmDssr/v7BSHLDyWA24PoIb0KVUG7/fjQzyivy+eZ+BPUlatL/BeVVAekvvaz+HjCkSZJZfgH98W+/kpkOC5JKIavGGhwibMx/fPX5EVXFiZvkQHzksWOb8YB7qhgtU76sxISt89sJsqvzSCljSSPLdC0Pziyb0/TY7wR6rwuGoV/Bee/N47WGWK1jfaqNGeCPI0D1ZYZFiKKetZiCMPAy3pkq9gtIlw8srM2Va/xtYRuY/TlRpC+9e+pLt+4VYd/XCajkJpeUGUWnSxy+hc/NlsWMuoYiVGUB0XHaaMmqQY9Yy424RO2YFA0eorJ7MJY2imLYYfAI7zvgDo24Tfa1fwdFcXYsDyKncfRgSEXWR6AH/c0waJb4xfuKRwGrcYjyLw1UMsDuQpi2vl43CkIK2UsIR6oWq04Cflrd46gC0bzWc4/3WEFt9ItObQHb/Y5EgVAZ/n/bjj8QzhfMEXtkwPxWmQjb6+4L9qwv7ZYQ9Z4ovoEsFTR0Bn7n37CxnH6XCwKiEWJqR43Sp8H6d6FCUL5GDzp/vp4=
