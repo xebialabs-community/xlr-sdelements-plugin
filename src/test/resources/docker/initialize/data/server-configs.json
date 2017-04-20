@@ -9,19 +9,12 @@
  */
 [
     {
-        "id": "Configuration/Custom/xld1",
-        "type": "xldeploy.Server",
-        "title": "xld1",
-        "url": "http://xld1:4516",
-        "username": "admin",
-        "password": "admin"
-    },
-    {
-        "id": "Configuration/Custom/xld2",
-        "type": "xldeploy.Server",
-        "title": "xld2",
-        "url": "http://xld2:4516",
-        "username": "admin",
-        "password": "admin"
+        "id": "Configuration/Custom/sde",
+        "type": "sdelements.Server",
+        "title": "sde",
+        "url": "https://cd.sdelements.com",
+        "username": "username",
+        "password": "password",
+        "authenticationMethod": "Basic"
     }
 ]

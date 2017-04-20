@@ -22,3 +22,6 @@ See the **[XL Release Documentation](https://docs.xebialabs.com/xl-release/index
 [xlr-sdelements-plugin-license-image]: https://img.shields.io/badge/License-MIT-yellow.svg
 [xlr-sdelements-plugin-license-url]: https://opensource.org/licenses/MIT
 [xlr-sdelements-plugin-downloads-image]: https://img.shields.io/github/downloads/xebialabs-community/xlr-sdelements-plugin/total.svg
+
+# References #
++ [SDE Elements REST api](https://sdelements.github.io/slate/)
