@@ -19,6 +19,9 @@ lowResult = result["lowResult"]
 if result["success"]:
     print "Test successful"
 else:
+    print "+ highResult: [%s]" % result["highResult"]
+    print "+ mediumResult: [%s]" % result["mediumResult"]
+    print "+ lowResult: [%s]\n" % result["lowResult"]
     raise Exception("Vulnerabilities found")
 
 
