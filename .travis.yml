@@ -1,4 +1,4 @@
 language: python
 install:
-  - pip install nose requests-mock
+  - pip install nose requests requests-mock
 script: ./gradlew check -PtestRunner=nosetests
