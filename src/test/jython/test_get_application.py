@@ -11,12 +11,12 @@ class TestGetApplication(object):
 
     def test_get_application_basic_auth(self, m):
         sde_client = SDEClient("http://localhost/sde", "Basic", "admin", "admin", None)
-        m.register_uri('GET', SDEClient.GET_APPLICATIONS % (sde_client.url, 'Application Test'), json=GET_APPLICATION_RESPONSE)
+        m.register_uri('GET', SDEClient.GET_APPLICATIONS % (sde_client.url, 'Application Test'), json=json.loads(GET_APPLICATION_RESPONSE))
         assert json.loads(GET_APPLICATION_RESPONSE)['results'][0] == sde_client.get_application('Application Test')
 
     def test_get_application_token_auth(self, m):
         sde_client = SDEClient("http://localhost/sde", "Token", None, None, "1234abcd")
-        m.register_uri('GET', SDEClient.GET_APPLICATIONS % (sde_client.url, 'Application Test'), json=GET_APPLICATION_RESPONSE)
+        m.register_uri('GET', SDEClient.GET_APPLICATIONS % (sde_client.url, 'Application Test'), json=json.loads(GET_APPLICATION_RESPONSE))
         assert json.loads(GET_APPLICATION_RESPONSE)['results'][0] == sde_client.get_application('Application Test')
 
     @raises(Exception)
@@ -28,5 +28,5 @@ class TestGetApplication(object):
     @raises(Exception)
     def test_get_unknown_authentication_method(self, m):
         sde_client = SDEClient("http://localhost/sde", "Unknown", None, None, None)
-        m.register_uri('GET', SDEClient.GET_APPLICATIONS % (sde_client.url, 'FAILED'), json=GET_APPLICATION_RESPONSE)
+        m.register_uri('GET', SDEClient.GET_APPLICATIONS % (sde_client.url, 'FAILED'), json=json.loads(GET_APPLICATION_RESPONSE))
         sde_client.get_application('FAILED')
