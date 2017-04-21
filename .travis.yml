@@ -6,3 +6,13 @@ notifications:
   hipchat:
     rooms:
       secure: G0+KM106bV/J6RSsrubIUliDG3b9Z6qMI8JdQu5dghPwAzP7fP3oHrw+PLOjeLkZKsztf+Yns/qqfMVMHskb9g8hEYlHS1pg1aV0BNagNXckECUDY4OdwsORU0nNdQCnPQuopKfE+xPmDssr/v7BSHLDyWA24PoIb0KVUG7/fjQzyivy+eZ+BPUlatL/BeVVAekvvaz+HjCkSZJZfgH98W+/kpkOC5JKIavGGhwibMx/fPX5EVXFiZvkQHzksWOb8YB7qhgtU76sxISt89sJsqvzSCljSSPLdC0Pziyb0/TY7wR6rwuGoV/Bee/N47WGWK1jfaqNGeCPI0D1ZYZFiKKetZiCMPAy3pkq9gtIlw8srM2Va/xtYRuY/TlRpC+9e+pLt+4VYd/XCajkJpeUGUWnSxy+hc/NlsWMuoYiVGUB0XHaaMmqQY9Yy424RO2YFA0eorJ7MJY2imLYYfAI7zvgDo24Tfa1fwdFcXYsDyKncfRgSEXWR6AH/c0waJb4xfuKRwGrcYjyLw1UMsDuQpi2vl43CkIK2UsIR6oWq04Cflrd46gC0bzWc4/3WEFt9ItObQHb/Y5EgVAZ/n/bjj8QzhfMEXtkwPxWmQjb6+4L9qwv7ZYQ9Z4ovoEsFTR0Bn7n37CxnH6XCwKiEWJqR43Sp8H6d6FCUL5GDzp/vp4=
+deploy:
+  provider: releases
+  api_key:
+    secure: v6wOgZfgiQnq8RHiuZ2U7nxqIq+2XiKn27KrRP5EJuSv0tYA6RjZ9IWrGtTiG2K6/xtlL+2X3LqlxpuTintaVznfbw+rtraOuk/Y0q+/OaV1mlq2a64J9jBbcvo8q6JPPPp8XuD/bGGNrjHIspVdX447VUg1Bg4mfSO+xQ+sDZtqEgnveQFqdCyp00pa7NFDJQymP/tetuDrmgE0V5IqFXq1nGgaxLas+AmSLDPVvuNX1sgBYlUzWaxf3Zl9v1/7UW3tjqx94N5+N5B+2ZMDUhT//kJ1tGbENjsboytyVP3CYlNZGBz23Ol84953si+RHQ5JHs/12OQ4fhPm6NIs6IVOntRAIa2FyQD35ACPLn2k2hUsevms2VvecxmTp32xQPUDYajJV+FRRbRW4BPtU6w0J28EGAdXM3QN7E2JlEcSY1YSKyb+T4+wzuq/00OGAHcNEd+RQspOopOGQODONAlX3sbL9ZNjhvfNUWsGlXJTqk4mJxEaTwAS8GDgPNKMlo1I0wHMG85cxmpHO4xhhS810zoVN6pcVnrM4kbVLCcBA65Ao8+yAUzYdmSkwNTXknTokgjA+WI46mboxvs4BKHtRMhuTlaYWzYxc3614s2ZwUykIs/yGyxDEQDiRBRCXRUhQ5mlp0h5RywDmiflbuyEeGocL5WaU0yptIrDNL8=
+  file: build/libs/xlr-sdelements-plugin-1.0.0.jar
+  skip_cleanup: true
+  on:
+    all_bracnhes: true
+    tags: true
+    repo: xebialabs-community/xlr-sdelements-plugin
