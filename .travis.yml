@@ -1,7 +1,7 @@
 language: python
 install:
 - pip install nose requests requests-mock
-script: "./gradlew check -PtestRunner=nosetests"
+script: "./gradlew build -PtestRunner=nosetests"
 notifications:
   hipchat:
     rooms:
