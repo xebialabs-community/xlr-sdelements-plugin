@@ -31,4 +31,4 @@ See the **[XL Release Documentation](https://docs.xebialabs.com/xl-release/index
 
    
 # References #
-+ [SDE Elements REST api](https://sdelements.github.io/slate/)
++ [SDE Elements REST api](https://api.sdelements.com)
