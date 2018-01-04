@@ -10,7 +10,7 @@
 
 
 xlr:
-  image: xebialabs/xlr_dev_run:v6.2.0.1
+  image: xebialabs/xlr_dev_run:v7.5.0.1
   volumes:
     - ~/xl-licenses:/license
     - ./../../../../:/data

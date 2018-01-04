@@ -39,7 +39,7 @@ class SDEClient:
     def _get_request(self, request_url):
         if self.authentication_method == 'Basic':
             return requests.get(request_url, auth=(self.username, self.password), proxies=self.proxy, verify = self.trust_all)
-        elif self.authentication_method == 'Token':
+        elif self.authentication_method == 'PAT':
             return requests.get(request_url, headers={'Authorization': 'token %s' % self.token}, proxies=self.proxy, verify = self.trust_all)
         else:
             raise Exception("Authentication method not found: [%s]" % self.authentication_method)

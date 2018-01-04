@@ -39,13 +39,7 @@
 
         <property name="enableSslVerification" label="SSL Verification" required="false" default="true" kind="boolean" description="Enable SSL Verification" />
 
-        <property name="token" label="Token" password="true" required="false" description="Used when token based authentication is selected"/>
-        <property name="authenticationMethod" label="Authentication Method" kind="enum" required="true">
-            <enum-values>
-                <value>Basic</value>
-                <value>Token</value>
-            </enum-values>
-        </property>
+        <property name="token" label="Token" password="true" required="false" description="Used when PAT based authentication is selected"/>
     </type>
 
 </synthetic>
