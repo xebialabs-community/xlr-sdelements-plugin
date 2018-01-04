@@ -15,7 +15,7 @@ class TestGetApplication(object):
         eq_(json.loads(GET_APPLICATION_RESPONSE)['results'][0], sde_client.get_application('Application Test'))
 
     def test_get_application_token_auth(self, m):
-        sde_client = SDEClient("http://localhost/sde", "Token", None, None, None, "1234abcd")
+        sde_client = SDEClient("http://localhost/sde", "PAT", None, None, None, "1234abcd")
         m.register_uri('GET', SDEClient.GET_APPLICATIONS % (sde_client.url, 'Application Test'), json=json.loads(GET_APPLICATION_RESPONSE))
         eq_(json.loads(GET_APPLICATION_RESPONSE)['results'][0], sde_client.get_application('Application Test'))
 

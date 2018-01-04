@@ -15,7 +15,7 @@ class TestGetTask(object):
         eq_(json.loads(GET_TASK_RESPONSE), sde_client.get_task('1', '1-T2'))
 
     def test_get_task_token_auth(self, m):
-        sde_client = SDEClient("http://localhost/sde", "Token", None, None, None, "1234abcd")
+        sde_client = SDEClient("http://localhost/sde", "PAT", None, None, None, "1234abcd")
         m.register_uri('GET', SDEClient.GET_TASK_URI % (sde_client.url, '1', '1-T2'), json=json.loads(GET_TASK_RESPONSE))
         eq_(json.loads(GET_TASK_RESPONSE), sde_client.get_task('1', '1-T2'))
 

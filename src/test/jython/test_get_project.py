@@ -16,7 +16,7 @@ class TestGetProject(object):
         eq_(json.loads(GET_PROJECT_RESPONSE)['results'][0], sde_client.get_project('Application Test', 'Project Test'))
 
     def test_get_project_token_auth(self, m):
-        sde_client = SDEClient("http://localhost/sde", "Token", None, None, None, "1234abcd")
+        sde_client = SDEClient("http://localhost/sde", "PAT", None, None, None, "1234abcd")
         m.register_uri('GET', SDEClient.GET_PROJECTS % (sde_client.url, '1', 'Project Test'), json=json.loads(GET_PROJECT_RESPONSE))
         m.register_uri('GET', SDEClient.GET_APPLICATIONS % (sde_client.url, 'Application Test'), json=json.loads(GET_APPLICATION_RESPONSE))
         eq_(json.loads(GET_PROJECT_RESPONSE)['results'][0], sde_client.get_project('Application Test', 'Project Test'))
