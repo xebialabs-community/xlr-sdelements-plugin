@@ -3,3 +3,4 @@
 build
 supervisord.*
 *.pyc
+xlr-sdelements-plugin.iml

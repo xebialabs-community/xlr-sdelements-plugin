@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--
 
-    Copyright 2017 XEBIALABS
+    Copyright 2018 XEBIALABS
 
     Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -34,13 +34,12 @@
     </type>
 
     <type type="sdelements.Server" extends="configuration.HttpConnection" label="SD Elements: Server">
-        <property name="token" label="Token" password="true" required="false" description="Used when token based authentication is selected"/>
-        <property name="authenticationMethod" label="Authentication Method" kind="enum" required="true">
-            <enum-values>
-                <value>Basic</value>
-                <value>Token</value>
-            </enum-values>
-        </property>
+        <property name="proxySshHost" label="Proxy SSH Host" required="false" description="HTTPS proxy host" />
+        <property name="proxySshPort" label="Proxy SSH Port" required="false" description="HTTPS proxy port" />
+
+        <property name="enableSslVerification" label="SSL Verification" required="false" default="true" kind="boolean" description="Enable SSL Verification" />
+
+        <property name="token" label="Token" password="true" required="false" description="Used when PAT based authentication is selected"/>
     </type>
 
 </synthetic>

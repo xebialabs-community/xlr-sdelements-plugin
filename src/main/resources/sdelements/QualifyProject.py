@@ -1,5 +1,5 @@
 #
-# Copyright 2017 XEBIALABS
+# Copyright 2018 XEBIALABS
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 #
@@ -10,7 +10,11 @@
 
 from sdelements.SDEClient import SDEClient
 
-client = SDEClient(sdServer['url'], sdServer['authenticationMethod'], sdServer['username'], sdServer['password'], sdServer['token'])
+proxy = None
+if sdServer['proxyHost'] or sdServer['proxySshHost']:
+    proxy = {'http': '%s:%s' % (sdServer['proxyHost'], sdServer['proxyPort']),
+             'https': '%s:%s' % (sdServer['proxySshHost'], sdServer['proxySshPort'])}
+client = SDEClient(sdServer['url'], sdServer['authenticationMethod'], proxy, sdServer['username'], sdServer['password'], sdServer['token'], sdServer['enableSslVerification'])
 result = client.check_vulnerabilities(application, project, high, medium, low)
 
 highResult = result["highResult"]
