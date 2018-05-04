@@ -8,6 +8,7 @@
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
+import sys
 from array import array
 from javax.net.ssl import SSLContext, TrustManager, X509TrustManager
 
@@ -32,9 +33,7 @@ class TrustAllCertificates:
     @staticmethod
     def trust_all_certificates():
         """Blindly trusts all certificates; note this is a per-JVM process setting."""
-        global _blind_trust
-
-        if not _blind_trust:
+        if not TrustAllCertificates._blind_trust:
             print >> sys.stderr, "Trusting all certificates without verifying them for this process."
             print >> sys.stderr, "It would be best to install certificates in the JVM's trust store."
             print >> sys.stderr, "Currently there is no way to turn this off."
@@ -42,4 +41,4 @@ class TrustAllCertificates:
             trust_all_context = SSLContext.getInstance("SSL")
             trust_all_context.init(None, trust_managers, None)
             SSLContext.setDefault(trust_all_context)
-            _blind_trust = True
+            TrustAllCertificates._blind_trust = True
