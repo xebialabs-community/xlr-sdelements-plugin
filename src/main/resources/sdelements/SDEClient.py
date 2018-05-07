@@ -19,6 +19,7 @@ class SDEClient:
     """
     GET_APPLICATIONS = '%s/api/v2/applications/?name=%s'
     GET_PROJECTS = '%s/api/v2/projects/?application=%s&name=%s'
+    GET_PROJECT_BY_ID = '%s/api/v2/projects/%s/'
     GET_TASK_URI = '%s/api/v2/projects/%s/tasks/%s/'
     GET_TASKS_URI = '%s/api/v2/projects/%s/tasks/'
     PRIO_HIGH = (7,8,9,10)
@@ -47,8 +48,7 @@ class SDEClient:
 
     def get_application(self, application_name):
         r = self._get_request(self.GET_APPLICATIONS % (self.url, application_name))
-        if r.status_code != 200:
-            raise Exception("Could not get application for application name [%s]" % application_name)
+        r.raise_for_status()
         if len(r.json()['results']) != 1:
             raise Exception("Retrieved [%s] applications, while expecting 1 for application name [%s]" % (len(r.json()['results']), application_name))
         return r.json()['results'][0]
@@ -56,22 +56,24 @@ class SDEClient:
     def get_project(self, application_name, project_name):
         application_id = self.get_application(application_name)['id']
         r = self._get_request(self.GET_PROJECTS % (self.url, application_id, project_name))
-        if r.status_code != 200:
-            raise Exception("Could not get projects for project with name [%s]" % (project_name))
+        r.raise_for_status()
         if len(r.json()["results"]) != 1:
             raise Exception("Retrieved [%s] projects, while expecting 1 for project name [%s]" % (len(r.json()["results"]), project_name))
         return r.json()["results"][0]
 
+    def get_project_by_id(self, project_id):
+        r = self._get_request(self.GET_PROJECT_BY_ID % (self.url, project_id))
+        r.raise_for_status()
+        return r.json()
+
     def get_task(self, project_id, task_id):
         r = self._get_request(self.GET_TASK_URI % (self.url, project_id, task_id))
-        if r.status_code != 200:
-            raise Exception("Could not get task for project [%s] with task id [%s]" % (project_id, task_id))
+        r.raise_for_status()
         return r.json()
 
     def get_tasks(self, project_id):
         r = self._get_request(self.GET_TASKS_URI % (self.url, project_id))
-        if r.status_code != 200:
-            raise Exception("Could not get tasks for project [%s]" % project_id)
+        r.raise_for_status()
         return r.json()
 
     def check_vulnerabilities(self, application, project, high, medium, low):
@@ -93,3 +95,7 @@ class SDEClient:
         else:
             result['success'] = True
         return result
+
+    def check_risk_policy_compliant(self, project_id):
+        return self.get_project_by_id(project_id)
+

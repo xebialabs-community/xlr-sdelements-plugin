@@ -8,25 +8,17 @@
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-import os
-import tempfile
-from com.xebialabs.xlr.ssl import LoaderUtil
-from java.nio.file import Files, Paths, StandardCopyOption
+from sdelements.SDEClient import SDEClient
 
-def set_ca_bundle_path():
-    ca_bundle_path = extract_file_from_jar("requests/cacert.pem")
-    os.environ['REQUESTS_CA_BUNDLE'] = ca_bundle_path
+proxy = None
+if sdServer['proxyHost'] or sdServer['proxySshHost']:
+    proxy = {'http': '%s:%s' % (sdServer['proxyHost'], sdServer['proxyPort']),
+             'https': '%s:%s' % (sdServer['proxySshHost'], sdServer['proxySshPort'])}
+client = SDEClient(sdServer['url'], sdServer['authenticationMethod'], proxy, sdServer['username'], sdServer['password'], sdServer['token'], sdServer['enableSslVerification'])
+result = client.check_risk_policy_compliant(projectId)
 
+riskPolicyCompliant = result["risk_policy_compliant"]
+projectName = result["name"]
 
-def extract_file_from_jar(config_file):
-    file_url = LoaderUtil.getResourceBySelfClassLoader(config_file)
-    if file_url:
-        tmp_file, tmp_abs_path = tempfile.mkstemp()
-        tmp_file.close()
-        Files.copy(file_url.openStream(), Paths.get(tmp_abs_path), StandardCopyOption.REPLACE_EXISTING)
-        return tmp_abs_path
-    else:
-        return None
-
-if 'REQUESTS_CA_BUNDLE' not in os.environ:
-    set_ca_bundle_path()
+if not riskPolicyCompliant:
+    raise Exception("Project with id [%s] is not compliant" % projectId)

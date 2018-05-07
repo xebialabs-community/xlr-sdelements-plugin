@@ -26,7 +26,8 @@ See the **[XL Release Documentation](https://docs.xebialabs.com/xl-release/index
 # Tasks #
 + `sdelements.Server`
    ![Server Config](images/server_config.png)
-+ `sdelements.QualifyProject`
++ `sdelements.RiskPolicyCompliant`
++ `sdelements.QualifyProject` - DEPRECATED
    ![Qualify Project](images/qualify_project.png)
 
    

@@ -2,7 +2,7 @@ import json
 import requests_mock
 from nose.tools import eq_, raises
 
-from responses import GET_APPLICATION_RESPONSE, GET_PROJECT_RESPONSE
+from responses import GET_APPLICATION_RESPONSE, GET_PROJECT_RESPONSE, GET_PROJECT_BY_ID_RESPONSE
 from sdelements.SDEClient import SDEClient
 
 
@@ -20,6 +20,11 @@ class TestGetProject(object):
         m.register_uri('GET', SDEClient.GET_PROJECTS % (sde_client.url, '1', 'Project Test'), json=json.loads(GET_PROJECT_RESPONSE))
         m.register_uri('GET', SDEClient.GET_APPLICATIONS % (sde_client.url, 'Application Test'), json=json.loads(GET_APPLICATION_RESPONSE))
         eq_(json.loads(GET_PROJECT_RESPONSE)['results'][0], sde_client.get_project('Application Test', 'Project Test'))
+
+    def test_get_project_by_id(self, m):
+        sde_client = SDEClient("http://localhost/sde", "Basic", None, "admin", "admin", None)
+        m.register_uri('GET', SDEClient.GET_PROJECT_BY_ID % (sde_client.url, '1'), json=json.loads(GET_PROJECT_BY_ID_RESPONSE))
+        eq_(json.loads(GET_PROJECT_BY_ID_RESPONSE), sde_client.get_project_by_id('1'))
 
     @raises(Exception)
     def test_get_unknown_project(self, m):
