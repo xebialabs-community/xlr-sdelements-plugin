@@ -21,7 +21,7 @@
         <property name="password" password="true" category="input" required="false" />
     </type>
 
-    <type type="sdelements.QualifyProject" extends="sdelements.Task" label="SD Elements: Qualify Project">
+    <type type="sdelements.QualifyProject" extends="sdelements.Task" label="SD Elements: Qualify Project" description="Deprecated, will be removed in 3.0.0. Use RiskPolicyCompliant">
         <property name="application" label="Application Name" category="input" required="true" description="The name of the Application to retrieve" />
         <property name="project" label="Project Name" category="input" required="true" description="The name of the Project to retrieve" />
         <property name="high" label="High vulnerabilities" category="input" kind="integer" required="true" default="0" description="Percentage of high vulnerabilities allowed" />
@@ -31,6 +31,13 @@
         <property name="highResult" label="High vulnerabilities" category="output" kind="integer" description="Percentage of high vulnerabilities allowed" />
         <property name="mediumResult" label="Medium vulnerabilities" category="output" kind="integer" description="Percentage of medium vulnerabilities allowed" />
         <property name="lowResult" label="Low vulnerabilities" category="output" kind="integer" description="Percentage of low vulnerabilities allowed" />
+    </type>
+
+    <type type="sdelements.RiskPolicyCompliant" extends="sdelements.Task" label="SD Elements: Check Risk Policy Compliant">
+        <property name="projectId" label="Project Id" category="input" required="true" description="The id of the Project to retrieve" />
+
+        <property name="riskPolicyCompliant" label="Risk policy Compliant" category="output" kind="boolean" description="True if compliant to risk policy" />
+        <property name="projectName" label="Project Name" category="output" kind="string" description="Project Name" />
     </type>
 
     <type type="sdelements.Server" extends="configuration.HttpConnection" label="SD Elements: Server">

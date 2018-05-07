@@ -4,3 +4,8 @@ build
 supervisord.*
 *.pyc
 xlr-sdelements-plugin.iml
+.classpath
+.project
+.settings/
+bin/
+
